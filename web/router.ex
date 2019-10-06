@@ -19,6 +19,13 @@ defmodule Discuss.Router do
     resources "/topics", TopicController
   end
 
+  scope "/auth", Discuss do # just a namsespace to url
+    pipe_through :browser # znaci ceo pipeline plug mora da prodje
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Discuss do
   #   pipe_through :api
