@@ -3,8 +3,7 @@
 <%= for topic <- @topics do %>
   <ul class="collection">
     <li class="collection-item">
-      <%= topic.id %> |
-      <%= topic.title %>
+      <%= link "#{topic.title}", to: topic_path(@conn, :show, topic) %>
       <div class="right">
         <%= if @conn.assigns.user.id == topic.user_id do %>
           <%= link "Edit", to: topic_path(@conn, :edit, topic) %><br />
